@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Балакина Анна Юрьевна — Портфолио воспитателя</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<style>
+    :root {
+      --bg: #f4f7fa; 
+      --card: #ffffff; 
+      --accent: #3b82f6; 
+      --accent-hover: #2563eb;
+      --text-main: #1e293b; 
+      --muted: #64748b; 
+      --border: #e2e8f0;
+      --radius: 16px; 
+      --maxw: 1150px; 
+      --gap: 24px;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 12px 32px rgba(15, 23, 42, 0.12);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+@media (hover: hover) {
+    a:hover { color: var(--accent-hover); }
+}
+
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 24px 20px; }
+
+    /* Шапка (Header) */
+    .hero {
+      background: var(--card); padding: 24px; border-radius: var(--radius);
+      display: flex; align-items: center; gap: 24px;
+      box-shadow: var(--shadow-md); flex-wrap: wrap;
+      transition: var(--transition);
+    }
+@media (hover: hover) {
+    .hero:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+}
+    
+    .photo {
+      width: 150px; height: 150px; border-radius: 50%; overflow: hidden;
+      flex-shrink: 0; border: 4px solid #eff6ff; transition: var(--transition);
+    }
+@media (hover: hover) {
+    .photo:hover { transform: scale(1.05); border-color: #dbeafe; }
+}
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .hero-info { flex: 1; min-width: 250px; }
+    h1 { margin: 0 0 8px 0; font-size: 1.8rem; font-weight: 800; color: #0f172a; }
+    .subtitle { font-size: 1.05rem; color: var(--muted); font-weight: 500; }
+    
+    .hero-nav { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .pill-link {
+      padding: 8px 16px; background: #eff6ff; color: var(--accent); 
+      border-radius: 99px; font-weight: 600; font-size: 0.9rem; transition: var(--transition);
+    }
+@media (hover: hover) {
+    .pill-link:hover { background: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+}
+
+    /* Сетка (Grid) */
+    .grid { display: grid; grid-template-columns: 1fr 340px; gap: var(--gap); margin-top: var(--gap); align-items: start; }
+    main { display: flex; flex-direction: column; gap: var(--gap); }
+    
+    section {
+      background: var(--card); padding: 28px; border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid transparent;
+    }
+@media (hover: hover) {
+    section:hover { box-shadow: var(--shadow-hover); border-color: #f1f5f9; }
+}
+    
+    aside { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .aside-card {
+      background: var(--card); padding: 24px; border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); transition: var(--transition);
+    }
+@media (hover: hover) {
+    .aside-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+}
+
+    /* Заголовки секций */
+    .section-title { margin: 0 0 20px 0; font-size: 1.35rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; }
+    h3, h4 { margin: 16px 0 8px 0; color: #1e293b; }
+
+    /* Документы: Строки со списками и кнопками */
+    .doc-list { display: flex; flex-direction: column; gap: 10px; list-style: none; padding: 0; margin: 0; }
+    .doc-item {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 12px 16px; background: #f8fafc; border: 1px solid var(--border);
+      border-radius: 12px; transition: var(--transition);
+    }
+@media (hover: hover) {
+    .doc-item:hover { background: #ffffff; border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateX(6px); }
+}
+    .doc-text { flex: 1; font-size: 0.95rem; font-weight: 500; line-height: 1.4; }
+    
+    /* Кнопки файлов */
+    .doc-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+      border-radius: 8px; border: none; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: var(--transition); text-decoration: none;
+    }
+    .btn svg { width: 16px; height: 16px; transition: var(--transition); }
+    .btn-view { background: var(--accent); color: white; }
+@media (hover: hover) {
+    .btn-view:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+}
+    .btn-dl { background: #e2e8f0; color: #475569; }
+@media (hover: hover) {
+    .btn-dl:hover { background: #cbd5e1; color: #1e293b; transform: translateY(-2px); }
+}
+
+    /* Галерея */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .gallery-grid img {
+      width: 100%; height: 160px; object-fit: cover; border-radius: 10px;
+      cursor: pointer; transition: var(--transition); border: 1px solid var(--border);
+    }
+@media (hover: hover) {
+    .gallery-grid img:hover { transform: scale(1.03) translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+}
+
+    /* Таймлайн */
+    .timeline { border-left: 3px solid #e2e8f0; padding-left: 20px; margin-left: 8px; }
+    .timeline-item { position: relative; margin-bottom: 20px; transition: var(--transition); }
+@media (hover: hover) {
+    .timeline-item:hover { transform: translateX(4px); }
+}
+    .timeline-item::before {
+      content: ''; position: absolute; left: -27px; top: 6px; width: 11px; height: 11px;
+      background: var(--accent); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 1px #e2e8f0;
+      transition: var(--transition);
+    }
+@media (hover: hover) {
+    .timeline-item:hover::before { transform: scale(1.3); box-shadow: 0 0 0 2px var(--accent-hover); }
+}
+
+    /* Карточки проектов */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid var(--border); transition: var(--transition); }
+    .card h4 { margin-top: 0; color: var(--accent); transition: var(--transition); }
+@media (hover: hover) {
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: #cbd5e1; background: #fff; }
+}
+
+    /* Инфографика (Прогресс бары) */
+    .stats-flex { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .stat-box {
+      background: #f8fafc; padding: 16px; border-radius: 12px; flex: 1; min-width: 140px;
+      border: 1px solid var(--border); text-align: center; transition: var(--transition);
+    }
+@media (hover: hover) {
+    .stat-box:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #cbd5e1; background: #fff; }
+}
+    .stat-box b { display: block; font-size: 1.6rem; color: var(--accent); margin: 4px 0; font-weight: 800; }
+    
+    .skill { margin-bottom: 12px; width: 100%; } /* Убрано ограничение по ширине */
+    .skill-info { display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 6px; font-weight: 500; }
+    .bar { height: 10px; background: #e2e8f0; border-radius: 8px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 8px; position: relative; overflow: hidden; }
+    /* Анимация перелива на шкале */
+    .bar-fill::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer { 100% { left: 100%; } }
+
+    /* Боковая Инфографика (как на скриншоте) */
+    .mini-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .mini-stat { background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid var(--border); transition: var(--transition); }
+    .mini-stat.full { grid-column: span 2; }
+@media (hover: hover) {
+    .mini-stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); border-color: #cbd5e1; background: #fff; }
+}
+    .mini-stat span { display: block; font-size: 0.85rem; color: var(--muted); }
+    .mini-stat b { display: block; font-size: 1.25rem; color: #0f172a; margin-top: 2px; }
+
+    /* Модальное окно */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center; z-index: 9999; padding: 16px;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-content {
+      background: #fff; border-radius: 16px; width: 100%; max-width: 900px;
+      max-height: 90vh; display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative; transition: all 0.3s ease;
+    }
+    /* Модификатор для PDF - на весь экран */
+    
+    
+    .modal-header {
+      padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex;
+      justify-content: space-between; align-items: center; background: #f8fafc; z-index: 2;
+    }
+    .modal-header h3 { margin: 0; font-size: 1.1rem; }
+    .close-btn { background: #e2e8f0; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; color: var(--text-main); transition: var(--transition); }
+@media (hover: hover) {
+    .close-btn:hover { background: #ef4444; color: #fff; transform: rotate(90deg); }
+}
+    
+    .modal-body {
+      padding: 24px; flex: 1; overflow-y: auto; background: #f1f5f9; 
+      display: flex; justify-content: center; position: relative;
+    }
+    
+    /* Состояния модалки */
+    .modal-body.is-docx { background: #ffffff; align-items: flex-start; } /* Белый фон для DOCX на всю высоту */
+     /* Без отступов для PDF */
+    
+    .modal-body img { max-width: 100%; max-height: 75vh; display: block; margin: auto; object-fit: contain; border-radius: 8px; box-shadow: var(--shadow-md); }
+    .modal-body iframe { width: 100%; height: 100%; border: none; display: block; }
+    .docx-viewer { padding: 40px; background: #fff; width: 100%; max-width: 850px; line-height: 1.6; margin: 0 auto; color: #1e293b; }
+    .docx-viewer img { max-width: 100%; height: auto; box-shadow: none; border-radius: 0; }
+    .modal-loader { margin: auto; color: var(--muted); font-weight: 500; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+
+    /* Кнопки перелистывания галереи */
+    .nav-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%; background: #ffffff; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: var(--shadow-md); z-index: 10; transition: var(--transition); color: var(--text-main);
+    }
+@media (hover: hover) {
+    .nav-arrow:hover { background: var(--accent); color: #fff; transform: translateY(-50%) scale(1.15); box-shadow: var(--shadow-hover); }
+}
+    .nav-arrow svg { width: 24px; height: 24px; }
+    .nav-prev { left: 16px; }
+    .nav-next { right: 16px; }
+
+    /* Адаптив */
+    @media (max-width: 992px) {
+      .grid { grid-template-columns: 1fr; }
+      aside { position: relative; top: 0; }
+    }
+    @media (max-width: 640px) {
+      .doc-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .doc-actions { width: 100%; justify-content: flex-start; }
+      .btn { flex: 1; justify-content: center; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-nav { justify-content: center; }
+      
+      .nav-arrow { width: 40px; height: 40px; }
+      .nav-prev { left: 8px; }
+      .nav-next { right: 8px; }
+      .docx-viewer { padding: 16px; }
+    }
+  
+    /* Стили для неактивных кнопок и всплывающих подсказок (тултипов) */
+    .disabled-btn {
+      background: #e2e8f0 !important;
+      color: #94a3b8 !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+    .tooltip { position: relative; overflow: visible !important; }
+    .tooltip::after {
+      content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-4px);
+      background: #1e293b; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
+      white-space: nowrap; opacity: 0; visibility: hidden; transition: 0.2s ease; pointer-events: none; z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .tooltip::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(4px);
+      border: 5px solid transparent; border-top-color: #1e293b; opacity: 0; visibility: hidden; transition: 0.2s ease; pointer-events: none; z-index: 100;
+    }
+    @media (hover: hover) {
+      .tooltip:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-8px); }
+      .tooltip:hover::before { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(2px); }
+    }
+    
+  
+    /* Стили для боковой навигации */
+    .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-link {
+      display: block; padding: 10px 16px; border-radius: 10px;
+      background: #f8fafc; color: #475569; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: var(--transition); border: 1px solid var(--border);
+    }
+    @media (hover: hover) {
+      .sidebar-link:hover {
+        background: #eff6ff; color: var(--accent);
+        border-color: #bfdbfe; transform: translateX(6px); box-shadow: var(--shadow-sm);
+      }
+    }
+    
+  </style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+<div class="photo">
+<img alt="Балакина Анна Юрьевна" onerror="this.src='data:image/svg+xml;utf8,&lt;svg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' fill=\'%23e2e8f0\'&gt;&lt;rect width=\'150\' height=\'150\'/&gt;&lt;text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%2364748b\' text-anchor=\'middle\' dy=\'.3em\'&gt;Нет фото&lt;/text&gt;&lt;/svg&gt;'" src="assets/photo.jpg"/>
+</div>
+<div class="hero-info">
+<h1>Балакина Анна Юрьевна</h1>
+<div class="subtitle">Воспитатель • Веду разновозрастную группу «Подсолнушки» • посёлок Азиатская</div>
+<div style="margin-top: 12px; color: var(--muted); font-size: 0.95rem;">
+          Опыт работы: <strong style="color:var(--text-main)">12 лет</strong>  •  
+          Кол-во воспитанников: <strong style="color:var(--text-main)">11</strong>
+</div>
+</div>
+</header>
+<div class="grid">
+<main>
+<section id="about">
+<h2 class="section-title">Обо мне</h2>
+<p>Меня зовут <strong>Балакина Анна Юрьевна</strong>, я воспитатель МАОУ СОШ посёлка Азиатская, с 12-летним стажем работы в дошкольном образовании. Родилась и живу в посёлке Азиатская, веду разновозрастную группу «Подсолнушки» (от 2 до 7 лет).</p>
+<p>Мой главный ориентир в работе — создание условий, при которых каждый ребенок (от малыша до будущего первоклассника) развивается в соответствии со своими возможностями, проявляя инициативу и самостоятельность. Использую проектный подход, игровые технологии и элементы сенсорной педагогики.</p>
+<p>Основы моей педагогической системы составляют принципы индивидуализации, дифференциации и модель «старшие учат младших».</p>
+</section>
+<section id="education">
+<h2 class="section-title">Образование и профессиональный опыт</h2>
+<div class="timeline">
+<div class="timeline-item"><strong>2003 – 2010</strong> — первое знакомство с профессией, работа воспитателем младшей разновозрастной группы.</div>
+<div class="timeline-item"><strong>2012</strong> — окончила «Нижнетагильский педагогический колледж №1».</div>
+<div class="timeline-item"><strong>2014 – 2016</strong> — должность младшего воспитателя.</div>
+<div class="timeline-item"><strong>2022 – настоящее время</strong> — воспитатель, музыкальный руководитель разновозрастной группы «Подсолнушки».</div>
+</div>
+</section>
+<section id="group">
+<h2 class="section-title">О группе, которую я веду</h2>
+<p>Разновозрастная группа в детском саду объединяет детей от 2 до 7 лет, имитируя модель большой семьи, где социализация и обучение строятся на взаимопомощи: старшие развивают ответственность и лидерские качества, выступая наставниками, а младшие быстрее осваивают навыки через подражание. Такой формат создает комфортную психологическую среду без лишней конкуренции и стресса от смены коллектива, позволяя каждому ребенку учиться в индивидуальном темпе.</p>
+<p>Однако успех методики напрямую зависит от высокой квалификации педагога, который должен уметь гармонично организовать режим и адаптировать образовательные задачи под разные уровни развития детей в едином пространстве.</p>
+<ul class="doc-list" style="margin-top: 20px;">
+<li class="doc-item">
+<span class="doc-text">Методы и приемы, используемые воспитателями разновозрастной группы</span>
+<div class="doc-actions" data-file="assets/group/metody-i-priemy-ispolzuemye-vospitatelyami-raznovozrastnoy-gruppy.docx" data-type="docx"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Разновозрастная группа (Описание)</span>
+<div class="doc-actions" data-file="assets/group/raznovozrastnaya-gruppa.docx" data-type="docx"></div>
+</li>
+</ul>
+</section>
+<section id="certs">
+<h2 class="section-title">Дипломы, курсы и сертификаты</h2>
+<ul class="doc-list">
+<li class="doc-item">
+<span class="doc-text">Диплом о среднем профессиональном образовании по специальности «Дошкольное образование» (2012)</span>
+<div class="doc-actions" data-file="assets/certs/diplom.png" data-type="image"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Удостоверение о повышении квалификации по программе «Профессиональная деятельность музыкального руководителя в ДОУ» (2022)</span>
+<div class="doc-actions" data-file="assets/certs/muzykalnyy-rukovoditel.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Сертификат участника онлайн-семинара «Психологические и возрастные особенности развития детей дошкольного возраста» (2022)</span>
+<div class="doc-actions" data-file="assets/certs/osobennosti-detey-doshkolnogo-vozrasta.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Удостоверение о повышении квалификации «Дошкольное образование в условиях модернизации и требований ФГОС ДО» (2023)</span>
+<div class="doc-actions" data-file="assets/certs/doshkolnoe-obrazovanie-v-usloviyah-modernizatsii.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Удостоверение о ПК «Особенности реализации федеральной образовательной программы дошкольного образования» (2023)</span>
+<div class="doc-actions" data-file="assets/certs/osobennosti-realizatsii-federalnoy-programmy-obrazovaniya.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Удостоверение о ПК по программе «Современные подходы и новые технологии в работе с детьми с ОВЗ в условиях ФГОС» (2025)</span>
+<div class="doc-actions" data-file="assets/certs/povyshenie-kvalifikatsii-detey-ovz.pdf" data-type="pdf"></div>
+</li>
+</ul>
+</section>
+<section id="seminars">
+<h2 class="section-title">Участие в семинарах</h2>
+<ul style="color: var(--muted); padding-left: 20px;">
+<li>Март 2024 — Семинар-практикум «Реализация федерального календарного плана воспитательной работы в группах раннего возраста»</li>
+<li>Сентябрь 2025 — Муниципальное методическое объединение Воспитателей</li>
+<li>Ноябрь 2025 — Семинар «Цифровизация дошкольного образования. Использование цифровых ресурсов и интерактивных технологий в работе педагога ДОО»</li>
+</ul>
+</section>
+<section id="pedagogy">
+<h2 class="section-title">Педагогическая деятельность и методики</h2>
+<ul class="doc-list">
+<li class="doc-item">
+<span class="doc-text">Влияние мелкой моторики рук</span>
+<div class="doc-actions" data-file="assets/pedagogy/vliyanie-melkoy-motoriki-ruk.docx" data-type="docx"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Игровые технологии в ДОУ</span>
+<div class="doc-actions" data-file="assets/pedagogy/igrovye-tehnologii-v-dou.docx" data-type="docx"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Использование ИКТ в ДОУ</span>
+<div class="doc-actions" data-file="assets/pedagogy/ispolzovanie-ikt-v-dou.docx" data-type="docx"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Проектная деятельность в ДОУ</span>
+<div class="doc-actions" data-file="assets/pedagogy/proektnaya-deyatelnost-v-dou.docx" data-type="docx"></div>
+</li>
+</ul>
+</section>
+<section id="projects">
+<h2 class="section-title">Реализованные авторские проекты</h2>
+<div class="cards">
+<div class="card">
+<h4>Мини-проект «Удивительный мир шкатулок»</h4>
+<p style="font-size:0.9rem; color:var(--muted); margin-bottom:12px;">Ознакомление детей с историей шкатулки, создание мини-музея в группе.</p>
+<span class="doc-text" style="display:none;">Презентация: Удивительный мир шкатулок</span>
+<div class="doc-actions" data-file="assets/projects/shkatulki.pptx" data-type="pptx"></div>
+</div>
+<div class="card">
+<h4>Очерк «Крупица истории моей семьи в истории победы»</h4>
+<p style="font-size:0.9rem; color:var(--muted); margin-bottom:12px;">Место памяти в нашем поселке. Исследовательская деятельность, изучение писем, фото.</p>
+<div style="display:flex; flex-direction:column; gap:8px;">
+<div>
+<span class="doc-text" style="display:none;">Презентация: Крупица истории</span>
+<div class="doc-actions" data-file="assets/projects/krupitsa-istorii-1.pptx" data-type="pptx"></div>
+</div>
+<div>
+<span class="doc-text" style="display:none;">Очерк: Крупица истории</span>
+<div class="doc-actions" data-file="assets/projects/ocherk-krupitsa-istorii-2.docx" data-type="docx"></div>
+</div>
+</div>
+</div>
+<div class="card">
+<h4>Выращивание лука на подоконнике</h4>
+<p style="font-size:0.9rem; color:var(--muted); margin-bottom:12px;">Формирование интереса к исследовательской деятельности, изучению растений.</p>
+<span class="doc-text" style="display:none;">Проект: Выращивание лука на подоконнике</span>
+<div class="doc-actions" data-file="assets/projects/ogorod-na-podokonnike-vyraschivanie-luka.docx" data-type="docx"></div>
+</div>
+</div>
+</section>
+<section id="results">
+<h2 class="section-title">Результаты педагогической деятельности</h2>
+<div class="stats-flex">
+<div class="stat-box">
+<div style="font-size:0.85rem; color:var(--muted);">Успеваемость</div>
+<b>96%</b>
+<div style="font-size:0.8rem; color:var(--muted);">по базовой диагностике</div>
+</div>
+<div class="stat-box">
+<div style="font-size:0.85rem; color:var(--muted);">Социальные навыки</div>
+<b>80%</b>
+<div style="font-size:0.8rem; color:var(--muted);">улучшение за год</div>
+</div>
+<div class="stat-box">
+<div style="font-size:0.85rem; color:var(--muted);">Самостоятельность</div>
+<b>90%</b>
+<div style="font-size:0.8rem; color:var(--muted);">детей проявляют</div>
+</div>
+</div>
+
+<div>
+<div class="skill">
+<div class="skill-info"><span>Подготовка к школе</span><span>85%</span></div>
+<div class="bar"><div class="bar-fill" style="width:85%"></div></div>
+</div>
+<div class="skill">
+<div class="skill-info"><span>Мелкая моторика</span><span>80%</span></div>
+<div class="bar"><div class="bar-fill" style="width:80%"></div></div>
+</div>
+<div class="skill">
+<div class="skill-info"><span>Речевое развитие</span><span>70%</span></div>
+<div class="bar"><div class="bar-fill" style="width:70%"></div></div>
+</div>
+</div>
+</section>
+<section id="gallery_2">
+<h2 class="section-title">Фотогалерея</h2>
+<div class="gallery-grid" id="gallery2-container">
+
+</div>
+</section>
+<section id="achievements">
+<h2 class="section-title">Достижения воспитанников</h2>
+<p style="color:var(--muted); margin-bottom:20px;">Воспитанники группы являются активными участниками мероприятий различных уровней.</p>
+<h4>Всероссийский уровень</h4>
+<ul class="doc-list" style="margin-bottom: 20px;">
+<li class="doc-item">
+<span class="doc-text">Победители конкурса педагогов и младших школьников «Мир, в котором мы живём!» (2022)</span>
+<div class="doc-actions" data-file="assets/achievements/mir-v-kotorom-my-zhivem.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Участник акции «Марш юных экологов» (2025)</span>
+<div class="doc-actions" data-file="assets/achievements/marsh-yunyh-ekologov.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Победители викторины «Безопасность в зимний период» (2025-2026)</span>
+<div class="doc-actions" data-file="assets/achievements/bezopasnost.jpg" data-type="image"></div>
+</li>
+</ul>
+<h4>Региональный уровень</h4>
+<ul class="doc-list" style="margin-bottom: 20px;">
+<li class="doc-item">
+<span class="doc-text">Сертификат за активное участие в акции «Марш юных экологов» (2025)</span>
+<div class="doc-actions" data-file="assets/achievements/marsh-yunyh-ekologov.pdf" data-type="pdf"></div>
+</li>
+</ul>
+<h4>Муниципальный уровень</h4>
+<ul class="doc-list">
+<li class="doc-item">
+<span class="doc-text">Призер конкурса по Lego-конструированию «Фантазии в стиле LEGO» (2025)</span>
+<div class="doc-actions" data-file="assets/achievements/lego.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Призер конкурса «Творчество юных» (2025)</span>
+<div class="doc-actions" data-file="assets/achievements/tvorchestvo-yunyh.jpg" data-type="image"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Призер конкурса рисунков «Радости весны» в номинации «Лес весной» (2025)</span>
+<div class="doc-actions" data-file="assets/achievements/radosti-vesny.jpg" data-type="image"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Призеры конкурса «Зимняя сказка» (часть 1) (2025-2026)</span>
+<div class="doc-actions" data-file="assets/achievements/zimnyaya-skazka.jpg" data-type="image"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Призеры конкурса «Зимняя сказка» (часть 2) (2025-2026)</span>
+<div class="doc-actions" data-file="assets/achievements/zimnyaya-skazka-2.jpg" data-type="image"></div>
+</li>
+</ul>
+</section>
+<section id="gallery">
+<h2 class="section-title">Примеры творческих работ детей</h2>
+<div class="gallery-grid" id="gallery-container">
+
+</div>
+</section>
+<section id="methods">
+<h2 class="section-title">Методическая копилка</h2>
+<p>Полезные интернет-ресурсы используемые мной в работе:</p>
+<ul style="color:var(--muted); padding-left: 20px; margin-bottom: 24px;">
+<li><strong>MAAM.ru</strong> — обширная база конспектов занятий, сценариев.</li>
+<li><strong>nsportal.ru</strong> — методические материалы, обмен опытом.</li>
+<li><strong>doshkolnik.ru</strong> — материалы для занятий, игры.</li>
+</ul>
+<h4>Мои методические разработки</h4>
+<ul class="doc-list">
+<li class="doc-item">
+<span class="doc-text">Экологические игры</span>
+<div class="doc-actions" data-file="assets/methods/ekologicheskie-igry.docx" data-type="docx"></div>
+</li>
+</ul>
+</section>
+<section id="parents">
+<h2 class="section-title">Формы работы с родителями</h2>
+<p style="color:var(--muted);">Регулярные формы: индивидуальные консультации, тематические встречи, родительские чаты и обратная связь по прогрессу.</p>
+<h4>Материалы и рекомендации для родителей</h4>
+<ul class="doc-list" style="margin-bottom: 24px;">
+<li class="doc-item">
+<span class="doc-text">Игры в кругу семьи</span>
+<div class="doc-actions" data-file="assets/parents/igry-v-krugu-semi.docx" data-type="docx"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Экологическое воспитание в семье</span>
+<div class="doc-actions" data-file="assets/parents/ekologicheskoe-vospitanie-v-seme.docx" data-type="docx"></div>
+</li>
+</ul>
+<h4>Фото совместных мероприятий</h4>
+<div class="gallery-grid" id="parents-gallery-container">
+
+</div>
+</section>
+<section id="awards">
+<h2 class="section-title">Мои достижения и признание</h2>
+<ul class="doc-list">
+<li class="doc-item">
+<span class="doc-text">Участие в краеведческой встрече, посвященной 140-летию уральского писателя А. П. Бондина (2022)</span>
+<div class="doc-actions" data-file="assets/awards/bondin.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Благодарность за профессиональное мастерство (2023)</span>
+<div class="doc-actions" data-file="assets/awards/masterstvo.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Опыт работы в форме занятия в дошкольной группе по теме «Зимующие птицы» (2025)</span>
+<div class="doc-actions" data-file="assets/awards/zimuyuschie-ptitsy.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Участие в реализации проекта «История города глазами дошколят» (2025)</span>
+<div class="doc-actions" data-file="assets/awards/istoriya-goroda-glazami-doshkolyat.jpg" data-type="image"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Активное участие в акции «Марш юных экологов» (2025)</span>
+<div class="doc-actions" data-file="assets/awards/marsh-yunyh-ekologov.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Плодотворное сотрудничество с сельской библиотекой (2025)</span>
+<div class="doc-actions" data-file="assets/awards/sotrudnichestvo-s-bibliotekoy.pdf" data-type="pdf"></div>
+</li>
+<li class="doc-item">
+<span class="doc-text">Призер конкурса «Творчество юных» (2025)</span>
+<div class="doc-actions" data-file="assets/awards/tvorchestvo-yunyh.pdf" data-type="pdf"></div>
+</li>
+</ul>
+</section>
+<section id="goals">
+<h2 class="section-title">Задачи на текущий год</h2>
+<ol style="padding-left: 20px; color: #334155; line-height: 1.8;">
+<li><strong>Здоровьесбережение:</strong> профилактика заболеваний и формирование гигиенической культуры.</li>
+<li><strong>Качество образования:</strong> акцент на социально-коммуникативном и нравственном развитии.</li>
+<li><strong>Работа с родителями:</strong> вовлечение семей через долгосрочные совместные проекты.</li>
+<li><strong>Развивающая среда:</strong> обновление предметно-пространственной среды (игры, исследования, ФГОС ДО).</li>
+<li><strong>Профессиональный рост:</strong> повышение мастерства через конкурсы, семинары и курсы.</li>
+</ol>
+</section>
+<section id="motivation">
+<h2 class="section-title">Мотивация к дальнейшему росту</h2>
+<p>Стремление к постоянному профессиональному росту, обмену опытом с коллегами и внедрению современных практик в условиях небольшого поселка. Готовность к участию в региональных проектах и конкурсах.</p>
+</section>
+</main>
+<aside>
+<div class="aside-card">
+<h3 style="margin-top:0; font-size:1.1rem; margin-bottom: 16px;">Навигация</h3>
+<div class="sidebar-nav">
+<a class="sidebar-link" href="#about">Обо мне</a>
+<a class="sidebar-link" href="#group">О группе</a>
+<a class="sidebar-link" href="#projects">Проекты</a>
+<a class="sidebar-link" href="#results">Результаты</a>
+<a class="sidebar-link" href="#achievements">Достижения</a>
+<a class="sidebar-link" href="#gallery_2">Фотогалерея</a>
+<a class="sidebar-link" href="#certs">Документы</a>
+</div>
+</div>
+<div class="aside-card">
+<h3 style="margin-top:0">Контакты</h3>
+<div style="font-weight: 600; font-size: 1.05rem;">Балакина Анна Юрьевна</div>
+<div style="margin-top: 12px; font-size: 0.95rem; display: flex; flex-direction: column; gap: 8px;">
+<span>📞 <a href="tel:+79536001339">+7 (953) 600-13-39</a></span>
+<span>✉️ <a href="mailto:balackina.anna2014@yandex.ru">balackina.anna2014@yandex.ru</a></span>
+<span>📍 ул. Стадионная, 1Б</span>
+</div>
+</div>
+<div class="aside-card">
+<h3 style="margin-top:0; font-size:1.1rem">Ключевые компетенции</h3>
+<div style="font-size:0.9rem; color:var(--muted); line-height:1.5; margin-bottom: 12px;">
+            Планирование • Проектная деятельность • Взаимодействие с семьями • Диагностика
+          </div>
+<div style="font-size:0.9rem; color:var(--muted); margin-bottom: 6px;">Педагогический опыт</div>
+<div class="bar" style="height: 12px;"><div class="bar-fill" style="width:90%; background: #60a5fa;"></div></div>
+</div>
+
+<div class="aside-card" style="padding: 20px;">
+<h3 style="margin-top:0; font-size:1.1rem; margin-bottom: 16px;">Быстрая инфографика</h3>
+<div class="mini-stats-grid">
+<div class="mini-stat">
+<span>Проекты</span>
+<b>7</b>
+</div>
+<div class="mini-stat">
+<span>Стаж</span>
+<b>12 лет</b>
+</div>
+<div class="mini-stat full">
+<span>Группа</span>
+<b>2-7 лет</b>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+<button class="nav-arrow nav-prev" id="navPrev" onclick="navigateGallery(-1)" style="display:none;">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="nav-arrow nav-next" id="navNext" onclick="navigateGallery(1)" style="display:none;">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div aria-modal="true" class="modal-content" id="modalContent" role="dialog">
+<div class="modal-header">
+<h3 id="modalTitle">Просмотр документа</h3>
+<button class="close-btn" onclick="closeModal()">×</button>
+</div>
+<div class="modal-body" id="modalBody">
+
+</div>
+</div>
+</div>
+<script>
+    const iconEye = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>`;
+    const iconDownload = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-3 3m0 0l-3-3m3 3V4"></path></svg>`;
+
+    // 1. Инициализация кнопок документов
+    document.querySelectorAll('.doc-actions').forEach(container => {
+      const fileUrl = container.getAttribute('data-file');
+      const fileType = container.getAttribute('data-type');
+      const title = container.previousElementSibling.textContent.trim();
+
+      const btnView = document.createElement('button');
+      if (fileType === 'pptx') {
+        btnView.className = 'btn btn-view disabled-btn tooltip';
+        btnView.setAttribute('data-tooltip', 'Предпросмотр недоступен. Скачайте файл.');
+        btnView.innerHTML = `${iconEye} Посмотреть`;
+        btnView.onclick = (e) => e.preventDefault(); // Блокируем нажатие
+      } else {
+        btnView.className = 'btn btn-view';
+        btnView.innerHTML = `${iconEye} Посмотреть`;
+        btnView.onclick = () => openSingleFile(fileUrl, fileType, title);
+      }
+
+      const btnDownload = document.createElement('a');
+      btnDownload.className = 'btn btn-dl';
+      btnDownload.innerHTML = `${iconDownload} Скачать`;
+      btnDownload.href = fileUrl;
+      btnDownload.setAttribute('download', '');
+
+      container.appendChild(btnView);
+      container.appendChild(btnDownload);
+    });
+
+    // Данные для слайдеров
+    let currentGalleryData = [];
+    let currentGalleryIndex = 0;
+
+    const galleryFiles = ['work-1.png', 'work-2.jpg', 'work-3.png', 'work-4.png', 'work-5.png'];
+    const galleryData = galleryFiles.map((f, i) => ({ src: `assets/gallery/${f}`, title: `Творческая работа ${i + 1}` }));
+    
+    const parentFiles = ['parents-1.png', 'parents-3.jpg', 'parents2.jpg'];
+    const parentData = parentFiles.map((f, i) => ({ src: `assets/parents/${f}`, title: `Совместное мероприятие ${i + 1}` }));
+
+    // 2. Генерация галереи (творческие работы)
+    const galleryContainer = document.getElementById('gallery-container');
+    galleryData.forEach((item, index) => {
+      const img = document.createElement('img');
+      img.src = item.src; img.alt = item.title;
+      img.onclick = () => openGallery(galleryData, index);
+      galleryContainer.appendChild(img);
+    });
+
+    // 3. Генерация галереи (фото с родителями)
+    const parentsGallery = document.getElementById('parents-gallery-container');
+    parentData.forEach((item, index) => {
+      const img = document.createElement('img');
+      img.src = item.src; img.alt = item.title;
+      img.onclick = () => openGallery(parentData, index);
+      parentsGallery.appendChild(img);
+    });
+
+    
+    // 3.5. Генерация новой фотогалереи 2
+    const gallery2Files = ['20221109-094424.jpg', '20230505-105824.jpg', '20231220-103344.jpg', 'img-20221027-wa0030.jpg', 'img-20221130-wa0006.jpg', 'img-20221130-wa0019.jpg', 'img-20221130-wa0020.jpg', 'img-20240426-wa0007.jpg'];
+    const gallery2Data = gallery2Files.map((f, i) => ({ src: `assets/gallery_2/${f}`, title: `Фотография ${i + 1}` }));
+
+    const gallery2Container = document.getElementById('gallery2-container');
+    if (gallery2Container && gallery2Container.children.length === 0) {
+      gallery2Data.forEach((item, index) => {
+        const img = document.createElement('img');
+        img.src = item.src; img.alt = item.title;
+        img.onclick = () => openGallery(gallery2Data, index);
+        gallery2Container.appendChild(img);
+      });
+    }
+    
+    // 4. Логика модального окна
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContent = document.getElementById('modalContent');
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalTitle');
+    const navPrev = document.getElementById('navPrev');
+    const navNext = document.getElementById('navNext');
+
+    function resetModal() {
+      modalBody.innerHTML = '';
+      modalBody.className = 'modal-body';
+      modalContent.className = 'modal-content';
+      navPrev.style.display = 'none';
+      navNext.style.display = 'none';
+    }
+
+    function openSingleFile(url, type, titleText) {
+      resetModal();
+      modalTitle.textContent = titleText || 'Просмотр документа';
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      if (type === 'image') {
+        const img = document.createElement('img');
+        img.src = url;
+        modalBody.appendChild(img);
+      } 
+      else if (type === 'pdf') {
+        modalBody.classList.add('is-docx'); // Используем белый фон и скролл как для docx
+        modalBody.innerHTML = '<div class="modal-loader"><svg width="24" height="24" stroke="currentColor" viewBox="0 0 24 24" fill="none" style="animation: spin 1s linear infinite; transform-origin: center;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Загрузка документа...</div>';
+        
+        if (typeof pdfjsLib === 'undefined') {
+            modalBody.innerHTML = '<iframe src="' + url + '#toolbar=0" style="width:100%; height:100%; border:none;"></iframe>';
+        } else {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+            pdfjsLib.getDocument(url).promise.then(function(pdf) {
+                modalBody.innerHTML = '<div id="pdf-container" style="display:flex; flex-direction:column; align-items:center; gap:16px; padding:20px 0; width:100%;"></div>';
+                const container = document.getElementById('pdf-container');
+                
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    pdf.getPage(pageNum).then(function(page) {
+                        const viewport = page.getViewport({scale: 1.5}); // Масштаб для хорошего качества
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        canvas.style.maxWidth = '100%';
+                        canvas.style.height = 'auto';
+                        canvas.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                        canvas.style.borderRadius = '8px'; // Возвращаем красивые круглые углы
+                        
+                        container.appendChild(canvas);
+                        page.render({canvasContext: context, viewport: viewport});
+                    });
+                }
+            }).catch(function(err) {
+                modalBody.innerHTML = '<div style="color:red; text-align:center; padding:20px;">Ошибка загрузки PDF: ' + err.message + '</div>';
+            });
+        }
+      } 
+      else if (type === 'pptx') {
+        modalBody.classList.add('is-docx'); // Белый фон
+        modalBody.innerHTML = `
+          <div style="text-align:center; padding: 40px; color: var(--text-main); width: 100%; margin: auto;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-bottom:16px;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <h3 style="margin-top:0;">Презентация (PPTX)</h3>
+            <p style="color:var(--muted); margin-bottom: 24px; font-size: 0.95rem;">Формат презентаций не поддерживается для предпросмотра прямо в браузере. Пожалуйста, скачайте файл для просмотра на вашем устройстве.</p>
+            <a href="${url}" download class="btn btn-view" style="display:inline-flex; font-size:1rem; padding: 12px 24px;">Скачать презентацию</a>
+          </div>
+        `;
+      }
+      else if (type === 'docx') {
+        modalBody.classList.add('is-docx');
+        modalBody.innerHTML = `<div class="modal-loader"><svg width="24" height="24" stroke="currentColor" viewBox="0 0 24 24" fill="none" style="animation: spin 1s linear infinite; transform-origin: center;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Обработка DOCX документа...</div>`;
+        
+        fetch(url)
+          .then(res => { if (!res.ok) throw new Error("Файл не найден"); return res.arrayBuffer(); })
+          .then(buffer => mammoth.convertToHtml({ arrayBuffer: buffer }))
+          .then(result => {
+            modalBody.innerHTML = '';
+            const docContainer = document.createElement('div');
+            docContainer.className = 'docx-viewer';
+            docContainer.innerHTML = result.value || '<i>Документ пуст или не удалось распознать текст.</i>';
+            modalBody.appendChild(docContainer);
+          })
+          .catch(err => {
+            modalBody.innerHTML = `<div class="docx-viewer" style="color:red; text-align:center;">Ошибка загрузки файла: ${err.message}.</div>`;
+          });
+      }
+    }
+
+    // Открытие галереи со слайдером
+    function openGallery(dataArray, startIndex) {
+      currentGalleryData = dataArray;
+      currentGalleryIndex = startIndex;
+      
+      resetModal();
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Показываем стрелки если картинок больше одной
+      if (currentGalleryData.length > 1) {
+        navPrev.style.display = 'flex';
+        navNext.style.display = 'flex';
+      }
+      
+      updateGalleryView();
+    }
+
+    function updateGalleryView() {
+      const item = currentGalleryData[currentGalleryIndex];
+      modalTitle.textContent = item.title;
+      modalBody.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
+    }
+
+    function navigateGallery(direction) {
+      currentGalleryIndex += direction;
+      if (currentGalleryIndex < 0) currentGalleryIndex = currentGalleryData.length - 1;
+      if (currentGalleryIndex >= currentGalleryData.length) currentGalleryIndex = 0;
+      updateGalleryView();
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => resetModal(), 300);
+    }
+
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!modalOverlay.classList.contains('active')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft' && navPrev.style.display !== 'none') navigateGallery(-1);
+      if (e.key === 'ArrowRight' && navNext.style.display !== 'none') navigateGallery(1);
+    });
+
+    // Плавный скролл
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId.length > 1) document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+<style>@keyframes spin { 100% { transform: rotate(360deg); } }
+    /* Стили для неактивных кнопок и всплывающих подсказок (тултипов) */
+    .disabled-btn {
+      background: #e2e8f0 !important;
+      color: #94a3b8 !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+    .tooltip { position: relative; overflow: visible !important; }
+    .tooltip::after {
+      content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-4px);
+      background: #1e293b; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
+      white-space: nowrap; opacity: 0; visibility: hidden; transition: 0.2s ease; pointer-events: none; z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .tooltip::before {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(4px);
+      border: 5px solid transparent; border-top-color: #1e293b; opacity: 0; visibility: hidden; transition: 0.2s ease; pointer-events: none; z-index: 100;
+    }
+    @media (hover: hover) {
+      .tooltip:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-8px); }
+      .tooltip:hover::before { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(2px); }
+    }
+    
+  
+    /* Стили для боковой навигации */
+    .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-link {
+      display: block; padding: 10px 16px; border-radius: 10px;
+      background: #f8fafc; color: #475569; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: var(--transition); border: 1px solid var(--border);
+    }
+    @media (hover: hover) {
+      .sidebar-link:hover {
+        background: #eff6ff; color: var(--accent);
+        border-color: #bfdbfe; transform: translateX(6px); box-shadow: var(--shadow-sm);
+      }
+    }
+    
+  </style>
+</body>
+</html>
